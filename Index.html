@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Jumana 🎀</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 100%; height: 100vh;
+    background: linear-gradient(135deg, #fce4f3 0%, #f3e4fc 50%, #fce4f0 100%);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .petals {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .petal {
+    position: absolute; top: -20px;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(30px);
+    z-index: 1;
+  }
+  .slide.active {
+    opacity: 1; pointer-events: all;
+    transform: translateY(0);
+  }
+  .slide.exit {
+    opacity: 0; transform: translateY(-30px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid #f0b8d8;
+    border-radius: 50px;
+    padding: 6px 20px;
+    font-size: 12px;
+    color: #c060a0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  h1.main-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(4rem, 15vw, 7rem);
+    color: #b040a0;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 4px 30px rgba(180,80,160,0.25);
+  }
+
+  .subtitle {
+    font-size: 15px; color: #a060c0;
+    font-weight: 300; margin-bottom: 1rem;
+  }
+
+  .hearts { font-size: 22px; letter-spacing: 8px; color: #e080c0; margin: 0.75rem 0; }
+
+  .from-text { font-size: 13px; color: #c080d0; margin-top: 0.5rem; }
+  .from-text span { font-weight: 500; color: #b040a0; }
+
+  .card {
+    background: rgba(255,255,255,0.82);
+    border: 1px solid rgba(240,180,220,0.5);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 500px; width: 100%;
+    position: relative; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(180,80,160,0.08);
+  }
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #f0a0d0, #d080f0, #f0a0d0);
+  }
+
+  .card-num {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem; color: rgba(190,120,200,0.15);
+    position: absolute; top: 0.2rem; right: 1rem; line-height: 1;
+  }
+
+  .card-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+  .card-label {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 3px; color: #c060a0;
+    margin-bottom: 0.75rem; font-weight: 500;
+  }
+
+  .card-text {
+    font-size: 16px; color: #6040a0;
+    line-height: 1.8; font-weight: 300;
+  }
+  .card-text strong { color: #b040a0; font-weight: 500; }
+
+  .final-card {
+    background: rgba(255,255,255,0.88);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 500px; width: 100%;
+    border: 1.5px solid rgba(210,150,200,0.4);
+    box-shadow: 0 8px 40px rgba(180,80,160,0.1);
+  }
+  .quote-mark {
+    font-family: 'Dancing Script', cursive;
+    font-size: 6rem; color: #e0a0d0;
+    line-height: 0.5; display: block; margin-bottom: 1rem;
+  }
+  .final-card p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem; color: #8040c0; line-height: 1.7;
+  }
+
+  .sig { margin-top: 1.5rem; }
+  .sig p { font-size: 13px; color: #c080d0; letter-spacing: 1px; }
+  .sig-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem; color: #b040a0; display: block; margin-top: 0.2rem;
+  }
+
+  .nav {
+    position: fixed; bottom: 2rem; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: center;
+    gap: 1.5rem; z-index: 10;
+  }
+
+  .nav-btn {
+    background: rgba(255,255,255,0.8);
+    border: 1.5px solid #e0a0d0;
+    border-radius: 50px;
+    padding: 10px 28px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px; font-weight: 500;
+    color: #b040a0; cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(6px);
+  }
+  .nav-btn:hover { background: rgba(255,255,255,0.95); transform: scale(1.04); }
+  .nav-btn:active { transform: scale(0.97); }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; transform: none; }
+
+  .dots {
+    display: flex; gap: 8px; align-items: center;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(190,120,200,0.3);
+    transition: all 0.3s ease;
+  }
+  .dot.active {
+    background: #b040a0;
+    width: 22px; border-radius: 4px;
+  }
+
+  .tap-hint {
+    position: fixed; bottom: 5.5rem;
+    font-size: 12px; color: #d090d0;
+    letter-spacing: 1px; z-index: 10;
+    animation: blink 2s ease infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 0.6; } 50% { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<!-- Slide 0: Cover -->
+<div class="slide active" id="slide-0">
+  <div class="badge">✦ Happy Birthday ✦</div>
+  <h1 class="main-name">Jumana</h1>
+  <p class="subtitle">A little gift made with love, just for you 🎀</p>
+  <div class="hearts">♡ ♡ ♡</div>
+  <p class="from-text">From your friend, <span>Mahmoud Metwally</span></p>
+</div>
+
+<!-- Slide 1 -->
+<div class="slide" id="slide-1">
+  <div class="card">
+    <span class="card-num">01</span>
+    <span class="card-icon">🌸</span>
+    <div class="card-label">How it all started</div>
+    <p class="card-text">
+      She walked into the chat and just <strong>made it sweeter</strong> —
+      so cute, so warm, and honestly impossible not to adore.
+      That's just who Jumana is. 💕
+    </p>
+  </div>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="slide-2">
+  <div class="card">
+    <span class="card-num">02</span>
+    <span class="card-icon">⭐</span>
+    <div class="card-label">A bright future ahead</div>
+    <p class="card-text">
+      One day she'll be an <strong>amazing engineer</strong>, and honestly?
+      No one deserves it more. She's already smart, driven, and full of potential.
+      The world won't know what hit it. 🎓
+    </p>
+  </div>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="slide-3">
+  <div class="card">
+    <span class="card-num">03</span>
+    <span class="card-icon">🌟</span>
+    <div class="card-label">What I know for sure</div>
+    <p class="card-text">
+      She's <strong>incredibly sweet, talented & strong</strong>.
+      May Allah bless her path and give her everything she works hard for.
+      She truly deserves it all. 🤍
+    </p>
+  </div>
+</div>
+
+<!-- Slide 4: Final -->
+<div class="slide" id="slide-4">
+  <div class="final-card">
+    <span class="quote-mark">"</span>
+    <p>
+      Happy birthday, Jumana.<br>
+      May this year bring you<br>
+      everything your heart wishes for —<br>
+      you deserve the world and more. 🌷
+    </p>
+  </div>
+  <div class="sig">
+    <p>with love,</p>
+    <span class="sig-name">Mahmoud Metwally</span>
+  </div>
+</div>
+
+<p class="tap-hint">tap anywhere to continue ✦</p>
+
+<div class="nav">
+  <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)" disabled>← back</button>
+  <div class="dots" id="dots"></div>
+  <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">next →</button>
+</div>
+
+<script>
+  const total = 5;
+  let current = 0;
+
+  const dotsEl = document.getElementById('dots');
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.id = 'dot-' + i;
+    dotsEl.appendChild(d);
+  }
+
+  function changeSlide(dir) {
+    const next = current + dir;
+    if (next < 0 || next >= total) return;
+
+    const cur = document.getElementById('slide-' + current);
+    cur.classList.remove('active');
+    cur.classList.add('exit');
+    setTimeout(() => cur.classList.remove('exit'), 500);
+
+    current = next;
+    const nxt = document.getElementById('slide-' + current);
+    nxt.classList.add('active');
+
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+
+    document.getElementById('prev-btn').disabled = current === 0;
+    document.getElementById('next-btn').disabled = current === total - 1;
+
+    const hint = document.querySelector('.tap-hint');
+    hint.style.opacity = current === total - 1 ? '0' : '';
+  }
+
+  document.body.addEventListener('click', function(e) {
+    if (e.target.closest('.nav')) return;
+    if (current < total - 1) changeSlide(1);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') changeSlide(1);
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+  });
+
+  const symbols = ['🌸','💜','✦','🌷','💕','⭐'];
+  const pc = document.getElementById('petals');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (5 + Math.random() * 7) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.fontSize = (12 + Math.random() * 10) + 'px';
+    pc.appendChild(p);
+  }
+</script>
+</body>
+</html>
